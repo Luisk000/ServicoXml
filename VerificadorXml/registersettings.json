@@ -1,0 +1,14 @@
+﻿{
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "CadastroDbConnection": "Data Source=WST-SOFT01;Initial Catalog=CadastroDB;Trusted_Connection=true;"
+  },
+  "FolderLocations": {
+    "folderPendente": "C:\\Users\\softadm1\\Desktop\\TesteEmail\\Pendente",
+    "folderAprovado": "C:\\Users\\softadm1\\Desktop\\TesteEmail\\Aprovado",
+    "folderSemCertificado": "C:\\Users\\softadm1\\Desktop\\TesteEmail\\Reprovado\\SemCertificado",
+    "folderCertificadoInvalido": "C:\\Users\\softadm1\\Desktop\\TesteEmail\\Reprovado\\CertificadoInvalido",
+    "folderFalha": "C:\\Users\\softadm1\\Desktop\\TesteEmail\\Aprovado\\Falha",
+    "folderConcluido": "C:\\Users\\softadm1\\Desktop\\TesteEmail\\Aprovado\\Concluido"
+  }
+}

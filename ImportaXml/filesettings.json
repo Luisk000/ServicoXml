@@ -1,0 +1,8 @@
+﻿{
+  "folder": "C:\\Users\\softadm1\\Desktop\\TesteEmail\\Aprovado",
+  "folderFalha": "C:\\Users\\softadm1\\Desktop\\TesteEmail\\Aprovado\\Falha",
+  "folderConcluido": "C:\\Users\\softadm1\\Desktop\\TesteEmail\\Aprovado\\Concluido",
+  "ConnectionStrings": {
+    "XmlDbConnection": "Data Source=WST-SOFT01; Initial Catalog=XmlDB;Trusted_Connection=true;"
+  }
+}
