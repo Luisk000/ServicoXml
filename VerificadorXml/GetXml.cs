@@ -5,6 +5,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.ServiceProcess;
@@ -101,6 +102,9 @@ namespace VerificadorXml
             XmlNodeList certificates509 = xmlDoc.GetElementsByTagName("X509Certificate");
 
             string sourceFile = Path.Combine(folderPendente, xmlName);
+
+            if (!sourceFile.Any())
+                Serilog.Log.Information("Nenhum novo arquivo xml recebido");
 
             if (certificates509.Count == 0)
             {

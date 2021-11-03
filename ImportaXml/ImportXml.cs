@@ -1,6 +1,12 @@
 ﻿using ImportaXml.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Serilog;
+using System;
 using System.IO;
+using System.Linq;
+using System.ServiceProcess;
 using System.Xml;
 
 namespace ImportaXml
@@ -21,32 +27,49 @@ namespace ImportaXml
         {
             if (!Directory.Exists(folderAprovado))
             {
-                Serilog.Log.Warning("A pasta de armazenamento de Xml não foi encontrada!");
+                Log.Warning("A pasta de armazenamento de Xml não foi encontrada!");
                 return;
             }
 
             string[] arquivos = Directory.GetFiles(folderAprovado);
 
-            foreach (string arq in arquivos)
+            if (arquivos.Any())
             {
-                try
+                foreach (string arq in arquivos)
                 {
-                    XmlFile xml = new XmlFile();
-                    xml.XmlName = arq.Split('\\')[6];
+                    try
+                    {
+                        XmlFile xml = new XmlFile();
+                        xml.XmlName = arq.Split('\\')[6];
 
-                    ReadXml(arq, xml);
+                        ReadXml(arq, xml);
 
-                    context.Files.Add(xml);
-                    context.SaveChanges();
-                    Serilog.Log.Information("Leitura de arquivo XML concluída com sucesso");
-                    Move(arq, folderConcluido);
+                        Log.Information("Leitura de arquivo XML concluída com sucesso");
+
+                        context.Files.Add(xml);
+                        context.SaveChanges();
+
+                        Log.Information("Novo arquivo xml adicionado ao banco de dados");
+                        Move(arq, folderConcluido);
+                    }
+                    catch (SqlException ex)
+                    {
+                        Log.Fatal(ex, "Falha ao conectar com o servidor SQL: " + ex.ToString());
+                        Move(arq, folderFalha);
+                        ServiceController sc = new ServiceController();
+                        sc.Stop();
+                    }
+                    catch
+                    {
+                        context.Dispose();
+                        Log.Warning("Um arquivo xml repetido foi recebido");
+                        Move(arq, folderFalha);
+                    }
                 }
-                catch
-                {
-                    context.Dispose();
-                    Serilog.Log.Warning("Falha ao ler arquivo xml");
-                    Move(arq, folderFalha);
-                }
+            }
+            else
+            {
+                Log.Information("Nenhum novo arquivo xml recebido");
             }
         }
 
@@ -1280,6 +1303,7 @@ namespace ImportaXml
             nr.InfoNaoRegistrada = nome;
             nr.XmlFileId = xml.nfeProc_NFe_infNFe_____Id;
             context.NRs.Add(nr);
+            Log.Warning("Uma informação não registrada foi encontrada no arquivo xml: " + xml.XmlName);
         }
     }
 }

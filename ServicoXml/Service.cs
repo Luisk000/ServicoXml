@@ -6,6 +6,8 @@ using System;
 using VerificadorXml;
 using ImportaXml;
 using System.ServiceProcess;
+using Microsoft.EntityFrameworkCore;
+using ImportaXml.Models;
 
 namespace ServicoXml
 {
@@ -14,6 +16,7 @@ namespace ServicoXml
         private static GetXml getXml = new GetXml();
         private static ImportXml import = new ImportXml();       
         private static System.Timers.Timer timer = new System.Timers.Timer();
+        private static XmlDbContext context = new XmlDbContext();
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -30,7 +33,6 @@ namespace ServicoXml
                     Log.Debug("getXml (início) ...");
 
                     getXml.ValidateFolder();
-
                     getXml.GetAttatchments();
 
                     Log.Debug("getXml (fim) ...");

@@ -21,7 +21,7 @@ namespace SerilogConfiguration
                 Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
                 .WriteTo.Console()
-                .WriteTo.File(LogFolder + "//log", rollingInterval: RollingInterval.Minute)
+                .WriteTo.File(LogFolder + "//log", rollingInterval: RollingInterval.Hour)
                 .CreateLogger();
             }
             catch
@@ -30,7 +30,7 @@ namespace SerilogConfiguration
                 {
                     Log.Logger = new LoggerConfiguration()
                     .WriteTo.Console()
-                    .WriteTo.File(LogFolder + "//log", rollingInterval: RollingInterval.Minute)
+                    .WriteTo.File(LogFolder + "//log", rollingInterval: RollingInterval.Hour)
                     .CreateLogger();
                 }
                 catch (Exception ex)
