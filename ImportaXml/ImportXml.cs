@@ -22,6 +22,7 @@ namespace ImportaXml
         
         private readonly XmlDbContext context = new XmlDbContext();
 
+
         public void Import()
         {
             if (!Directory.Exists(folderAprovado))
@@ -57,6 +58,11 @@ namespace ImportaXml
                         Move(arq, folderFalha);
                         ServiceController sc = new ServiceController();
                         sc.Stop();
+                    }
+                    catch (DbUpdateException)
+                    {
+                        Log.Warning("Um arquivo xml repetido foi recebido");
+                        Move(arq, folderFalha);
                     }
                     catch (InvalidOperationException)
                     {
