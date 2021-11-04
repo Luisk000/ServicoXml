@@ -16,6 +16,7 @@ namespace SerilogConfiguration
         {
             if (!Directory.Exists(LogFolder))
                 Directory.CreateDirectory(LogFolder);
+
             try
             {
                 Log.Logger = new LoggerConfiguration()
@@ -24,7 +25,7 @@ namespace SerilogConfiguration
                 .WriteTo.File(LogFolder + "//log", rollingInterval: RollingInterval.Hour)
                 .CreateLogger();
             }
-            catch
+            catch (Exception ex)
             {
                 try
                 {
@@ -32,12 +33,14 @@ namespace SerilogConfiguration
                     .WriteTo.Console()
                     .WriteTo.File(LogFolder + "//log", rollingInterval: RollingInterval.Hour)
                     .CreateLogger();
+
+                    Log.Error(ex, "Ocorreu um erro ao possivelmente tentar salvar logs no banco de dados: " + ex.ToString());
                 }
-                catch (Exception ex)
+                catch (Exception x)
                 {
                     EventLog eLog = new EventLog("Application");
                     eLog.Source = "Application";
-                    eLog.WriteEntry("SERILOG NÂO ESTÀ FUNCIONANDO : " + ex.ToString(), EventLogEntryType.Error);
+                    eLog.WriteEntry("SERILOG NÂO ESTÁ FUNCIONANDO : " + x.ToString(), EventLogEntryType.Error);
                 }
             }
         }

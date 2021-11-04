@@ -15,13 +15,14 @@ namespace ServicoXml
         public static void Main(string[] args)
         {
             log.Config();
+
             try
             {
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "ALGO DEU ERRADO :" + ex.ToString());
+                Log.Fatal(ex, "ALGO DEU ERRADO COM O SERVIÇO XML:" + ex.ToString());
                 EventLog eLog = new EventLog("Application");
                 eLog.Source = "Application";
                 eLog.WriteEntry("OCORREU UMA FALHA : " + ex.ToString(), EventLogEntryType.Error);

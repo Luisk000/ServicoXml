@@ -2,6 +2,7 @@
 using Limilabs.Mail;
 using Limilabs.Mail.MIME;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,22 +15,48 @@ using VerificadorXml.Models;
 
 namespace VerificadorXml
 {
-    public class GetXml : DataRepository
+    public class GetXml
     {
+        private static IConfigurationRoot configuration = new ConfigurationBuilder()
+                .AddJsonFile("registersettings.json", optional: false, reloadOnChange: true).Build();
+
+        private string folderPendente = configuration.GetSection("FolderLocations:folderPendente").Value;
+        private string folderAprovado = configuration.GetSection("FolderLocations:folderAprovado").Value;
+        private string folderSemCertificado = configuration.GetSection("FolderLocations:folderSemCertificado").Value;
+        private string folderCertificadoInvalido = configuration.GetSection("FolderLocations:folderCertificadoInvalido").Value;
+        private string folderFalha = configuration.GetSection("FolderLocations:folderFalha").Value;
+        private string folderConcluido = configuration.GetSection("FolderLocations:folderConcluido").Value;
+
         public void ValidateFolder()
         {
-            if (!Directory.Exists(folderPendente))
-                Directory.CreateDirectory(folderPendente);
+            try
+            {
+                if (!Directory.Exists(folderPendente))
+                    Directory.CreateDirectory(folderPendente);
 
-            if (!Directory.Exists(folderAprovado))
-                Directory.CreateDirectory(folderAprovado);
+                if (!Directory.Exists(folderAprovado))
+                    Directory.CreateDirectory(folderAprovado);
 
-            if (!Directory.Exists(folderSemCertificado))
-                Directory.CreateDirectory(folderSemCertificado);
+                if (!Directory.Exists(folderSemCertificado))
+                    Directory.CreateDirectory(folderSemCertificado);
 
-            if (!Directory.Exists(folderCertificadoInvalido))
-                Directory.CreateDirectory(folderCertificadoInvalido);
+                if (!Directory.Exists(folderCertificadoInvalido))
+                    Directory.CreateDirectory(folderCertificadoInvalido);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                Serilog.Log.Fatal(ex, "Permissão para modificar diretrios negada: " + ex.ToString());
+                ServiceController sc = new ServiceController();
+                sc.Stop();
+            }
+            catch (Exception ex)
+            {
+                Serilog.Log.Fatal(ex, "Um erro desconhecido ocorreu ao criar os diretórios: " + ex.ToString());
+                ServiceController sc = new ServiceController();
+                sc.Stop();
+            }
         }
+
 
         public void GetAttatchments()
         {
@@ -38,7 +65,6 @@ namespace VerificadorXml
                 CadastroDbContext context = new CadastroDbContext();
                 foreach (Cadastro cadastro in context.Cadastros)
                 {
-
                     if (cadastro.Ativo == true)
                         using (Imap imap = new Imap())
                         {
@@ -58,6 +84,8 @@ namespace VerificadorXml
                             imap.Close();
                         }
                 }
+                if (!context.Cadastros.Any())
+                    Serilog.Log.Warning("Não há nehum cadastro no banco de dados");
             }
             catch (SqlException ex)
             {
@@ -65,11 +93,21 @@ namespace VerificadorXml
                 ServiceController sc = new ServiceController();
                 sc.Stop();
             }
-            catch (Exception ex)
+            catch (DirectoryNotFoundException)
+            {
+                Serilog.Log.Warning("A pasta de destino dos arquivos não foi encontrada, ou foi excluida");
+                Serilog.Log.Warning("Criando nova pasta de destino");
+            }
+            catch (ImapResponseException ex)
             {
                 Serilog.Log.Error(ex, "Falha ao conectar com server Imap: " + ex.ToString());
             }
+            catch (Exception ex)
+            {
+                Serilog.Log.Error(ex, "Um erro desconhecido ocorreu: " + ex.ToString());
+            }
         }
+
 
         private void SaveAttachments(IMail email, string folder)
         {
@@ -89,7 +127,11 @@ namespace VerificadorXml
                     VerifyXML(Path.Combine(file));
                 }
             }
+
+            if (!email.Attachments.Any())
+                Serilog.Log.Warning("Nenhum anexo foi encontrado em um email enviado por " + email.ReturnPath);
         }
+
 
         private void VerifyXML(string xmlName)
         {
@@ -138,6 +180,7 @@ namespace VerificadorXml
                 GC.WaitForPendingFinalizers();
             }
         }
+
 
         private void Move(string sourceFile, string xmlName, string folder)
         {

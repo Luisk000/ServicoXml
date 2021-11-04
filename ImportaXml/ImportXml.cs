@@ -20,8 +20,8 @@ namespace ImportaXml
         private static string folderConcluido = configuration.GetSection("folderConcluido").Value;
         private static string folderFalha = configuration.GetSection("folderFalha").Value;
 
+        string[] arquivos = Directory.GetFiles(folderAprovado);
         private readonly XmlDbContext context = new XmlDbContext();
-
 
         public void Import()
         {
@@ -30,8 +30,6 @@ namespace ImportaXml
                 Log.Warning("A pasta de armazenamento de Xml não foi encontrada!");
                 return;
             }
-
-            string[] arquivos = Directory.GetFiles(folderAprovado);
 
             if (arquivos.Any())
             {
@@ -59,17 +57,21 @@ namespace ImportaXml
                         ServiceController sc = new ServiceController();
                         sc.Stop();
                     }
-                    catch
+                    catch (DbUpdateException ex)
                     {
                         context.Dispose();
-                        Log.Warning("Um arquivo xml repetido foi recebido");
+                        Log.Warning(ex, "Um arquivo xml repetido foi recebido");
                         Move(arq, folderFalha);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex, "Um erro desconhecido ocorreu ao ler um arquivo xml: " + ex.ToString());
                     }
                 }
             }
             else
             {
-                Log.Information("Nenhum novo arquivo xml recebido");
+                Log.Debug("Nenhum novo arquivo xml recebido");
             }
         }
 
