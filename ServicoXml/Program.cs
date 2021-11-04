@@ -19,10 +19,10 @@ namespace ServicoXml
             try
             {
                 CreateHostBuilder(args).Build().Run();
-            }
+            }           
             catch (Exception ex)
             {
-                Log.Fatal(ex, "ALGO DEU ERRADO COM O SERVIÇO XML:" + ex.ToString());
+                Log.Fatal(ex, "ALGO DEU ERRADO COM O SERVIÇO XML: " + ex.ToString());
                 EventLog eLog = new EventLog("Application");
                 eLog.Source = "Application";
                 eLog.WriteEntry("OCORREU UMA FALHA : " + ex.ToString(), EventLogEntryType.Error);
@@ -39,7 +39,6 @@ namespace ServicoXml
             .Configure<EventLogSettings>(config =>
                 {
                     config.LogName = "XmlService";
-                    //config.SourceName = ".NET Runtime";
                 });
             }).UseWindowsService();
     }

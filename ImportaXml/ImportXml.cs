@@ -19,8 +19,7 @@ namespace ImportaXml
         private static string folderAprovado = configuration.GetSection("folder").Value;
         private static string folderConcluido = configuration.GetSection("folderConcluido").Value;
         private static string folderFalha = configuration.GetSection("folderFalha").Value;
-
-        string[] arquivos = Directory.GetFiles(folderAprovado);
+        
         private readonly XmlDbContext context = new XmlDbContext();
 
         public void Import()
@@ -30,6 +29,8 @@ namespace ImportaXml
                 Log.Warning("A pasta de armazenamento de Xml não foi encontrada!");
                 return;
             }
+
+            string[] arquivos = Directory.GetFiles(folderAprovado);
 
             if (arquivos.Any())
             {

@@ -20,12 +20,13 @@ namespace VerificadorXml
         private static IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddJsonFile("registersettings.json", optional: false, reloadOnChange: true).Build();
 
-        private string folderPendente = configuration.GetSection("FolderLocations:folderPendente").Value;
-        private string folderAprovado = configuration.GetSection("FolderLocations:folderAprovado").Value;
-        private string folderSemCertificado = configuration.GetSection("FolderLocations:folderSemCertificado").Value;
-        private string folderCertificadoInvalido = configuration.GetSection("FolderLocations:folderCertificadoInvalido").Value;
-        private string folderFalha = configuration.GetSection("FolderLocations:folderFalha").Value;
-        private string folderConcluido = configuration.GetSection("FolderLocations:folderConcluido").Value;
+        protected string folderPendente = configuration.GetSection("FolderLocations:folderPendente").Value;
+        protected string folderAprovado = configuration.GetSection("FolderLocations:folderAprovado").Value;
+        protected string folderSemCertificado = configuration.GetSection("FolderLocations:folderSemCertificado").Value;
+        protected string folderCertificadoInvalido = configuration.GetSection("FolderLocations:folderCertificadoInvalido").Value;
+        protected string folderFalha = configuration.GetSection("FolderLocations:folderFalha").Value;
+        protected string folderConcluido = configuration.GetSection("FolderLocations:folderConcluido").Value;
+
 
         public void ValidateFolder()
         {
