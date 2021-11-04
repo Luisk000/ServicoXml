@@ -40,7 +40,7 @@ namespace ImportaXml
                     {
                         XmlFile xml = new XmlFile();
                         xml.XmlName = arq.Split('\\')[6];
-
+                       
                         ReadXml(arq, xml);
 
                         Log.Information("Leitura de arquivo XML concluída com sucesso");
