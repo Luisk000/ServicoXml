@@ -58,7 +58,7 @@ namespace ImportaXml
                         ServiceController sc = new ServiceController();
                         sc.Stop();
                     }
-                    catch (DbUpdateException ex)
+                    catch (InvalidOperationException ex)
                     {
                         context.Dispose();
                         Log.Warning(ex, "Um arquivo xml repetido foi recebido");
