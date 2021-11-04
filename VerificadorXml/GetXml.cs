@@ -73,7 +73,7 @@ namespace VerificadorXml
                             imap.UseBestLogin(cadastro.Email, cadastro.Senha);
                             imap.SelectInbox();
 
-                            List<long> uids = imap.Search(Flag.All);
+                            List<long> uids = imap.Search(Flag.Undeleted);
 
                             foreach (long uid in uids)
                             {

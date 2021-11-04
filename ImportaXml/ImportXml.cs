@@ -58,10 +58,9 @@ namespace ImportaXml
                         ServiceController sc = new ServiceController();
                         sc.Stop();
                     }
-                    catch (InvalidOperationException ex)
+                    catch (InvalidOperationException)
                     {
-                        context.Dispose();
-                        Log.Warning(ex, "Um arquivo xml repetido foi recebido");
+                        Log.Warning("Um arquivo xml repetido foi recebido");
                         Move(arq, folderFalha);
                     }
                     catch (Exception ex)
