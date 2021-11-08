@@ -702,6 +702,9 @@ namespace ImportaXml
                                                             {
                                                                 if (PISNT[l].Name == "CST")
                                                                     xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISNT_CST = PISNT[l].InnerText;
+
+                                                                else
+                                                                    NaoRegistrado(PISNT[l].Name, PISNT[l].InnerText, xml);
                                                             }
                                                         }
                                                         else
@@ -723,16 +726,16 @@ namespace ImportaXml
                                                             for (int l = 0; l < COFINSAliq.Count; l++)
                                                             {
                                                                 if (COFINSAliq[l].Name == "CST")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_CST = COFINSAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_CST = COFINSAliq[l].InnerText;
 
                                                                 else if (COFINSAliq[l].Name == "vBC")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_vBC = COFINSAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vBC = COFINSAliq[l].InnerText;
 
                                                                 else if (COFINSAliq[l].Name == "pPIS")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_pPIS = COFINSAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_pPIS = COFINSAliq[l].InnerText;
 
                                                                 else if (COFINSAliq[l].Name == "vPIS")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_vPIS = COFINSAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vPIS = COFINSAliq[l].InnerText;
 
                                                                 else if (COFINSAliq[l].Name == "pCOFINS")
                                                                     xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_pCOFINS = COFINSAliq[l].InnerText;
@@ -744,6 +747,19 @@ namespace ImportaXml
                                                                     NaoRegistrado(COFINSAliq[l].Name, COFINSAliq[l].InnerText, xml);
                                                             }
                                                         }
+                                                        else if (COFINS[k].Name == "COFINSNT")
+                                                        {
+                                                            XmlNodeList COFINSNT = COFINS[k].ChildNodes;
+
+                                                            for (int l = 0; l < COFINSNT.Count; l++)
+                                                            {
+                                                                if (COFINSNT[l].Name == "CST")
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSNT_CST = COFINSNT[l].InnerText;
+
+                                                                else
+                                                                    NaoRegistrado(COFINSNT[l].Name, COFINSNT[l].InnerText, xml);
+                                                            }                                                                                                
+                                                        }     
 
                                                         else
                                                             NaoRegistrado(COFINS[k].Name, COFINS[k].InnerText, xml);
