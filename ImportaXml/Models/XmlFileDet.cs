@@ -60,8 +60,6 @@ namespace ImportaXml.Models
 
         public string nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_CST { get; set; }
         public string nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vBC { get; set; }
-        public string nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_pPIS { get; set; }
-        public string nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vPIS { get; set; }
         public string nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_pCOFINS { get; set; }
         public string nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vCOFINS { get; set; }
     }

@@ -731,12 +731,6 @@ namespace ImportaXml
                                                                 else if (COFINSAliq[l].Name == "vBC")
                                                                     xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vBC = COFINSAliq[l].InnerText;
 
-                                                                else if (COFINSAliq[l].Name == "pPIS")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_pPIS = COFINSAliq[l].InnerText;
-
-                                                                else if (COFINSAliq[l].Name == "vPIS")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vPIS = COFINSAliq[l].InnerText;
-
                                                                 else if (COFINSAliq[l].Name == "pCOFINS")
                                                                     xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_pCOFINS = COFINSAliq[l].InnerText;
 
