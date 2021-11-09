@@ -19,7 +19,7 @@ namespace ImportaXml
         private static string folderAprovado = configuration.GetSection("folder").Value;
         private static string folderConcluido = configuration.GetSection("folderConcluido").Value;
         private static string folderFalha = configuration.GetSection("folderFalha").Value;
-        
+
         private readonly XmlDbContext context = new XmlDbContext();
 
 
@@ -37,19 +37,19 @@ namespace ImportaXml
             {
                 foreach (string arq in arquivos)
                 {
+                    XmlFile xml = new XmlFile();
+                    xml.XmlName = arq.Split('\\')[6];
+
                     try
-                    {
-                        XmlFile xml = new XmlFile();
-                        xml.XmlName = arq.Split('\\')[6];
-                       
+                    {                                            
                         ReadXml(arq, xml);
 
-                        Log.Information("Leitura de arquivo XML concluída com sucesso");
+                        Log.Information("Leitura de " + xml.XmlName + " concluída com sucesso");
 
                         context.Files.Add(xml);
                         context.SaveChanges();
 
-                        Log.Information("Novo arquivo xml adicionado ao banco de dados");
+                        Log.Information(xml.XmlName + " adicionado ao banco de dados");
                         Move(arq, folderConcluido);
                     }
                     catch (SqlException ex)
@@ -61,13 +61,33 @@ namespace ImportaXml
                     }
                     catch (DbUpdateException)
                     {
-                        Log.Warning("Um arquivo xml repetido foi recebido");
-                        Move(arq, folderFalha);
+                        try
+                        {
+                            var nomeRepetido = context.Files.Where(b => b.XmlName == xml.XmlName).Single();      
+                            Log.Warning(xml.XmlName + " já estava salvo no banco de dados");
+                            Move(arq, folderFalha);
+                        }
+                        catch
+                        {
+                            var idRepetido = context.Files.Where(b => b.nfeProc_NFe_infNFe_____Id == xml.nfeProc_NFe_infNFe_____Id).Single();
+                            Log.Warning("Há uma arquivo com o mesmo Id de " + xml.XmlName + " já salvo no banco de dados: " + idRepetido.XmlName);
+                            Move(arq, folderFalha);
+                        }                
                     }
                     catch (InvalidOperationException)
                     {
-                        Log.Warning("Um arquivo xml repetido foi recebido");
-                        Move(arq, folderFalha);
+                        try
+                        {
+                            var nomeRepetido = context.Files.Where(b => b.XmlName == xml.XmlName).Single();
+                            Log.Warning(xml.XmlName + " já estava salvo no banco de dados");
+                            Move(arq, folderFalha);
+                        }
+                        catch
+                        {
+                            var idRepetido = context.Files.Where(b => b.nfeProc_NFe_infNFe_____Id == xml.nfeProc_NFe_infNFe_____Id).Single();
+                            Log.Warning("Há uma arquivo com o mesmo Id de " + xml.XmlName + " já salvo no banco de dados: " + idRepetido.XmlName);
+                            Move(arq, folderFalha);
+                        }
                     }
                     catch (Exception ex)
                     {

@@ -17,7 +17,7 @@ namespace ServicoXml
             log.Config();
 
             try
-            {
+            {              
                 CreateHostBuilder(args).Build().Run();
             }           
             catch (Exception ex)

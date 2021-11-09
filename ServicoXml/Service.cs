@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using VerificadorXml;
 using ImportaXml;
+using System.Management;
 
 namespace ServicoXml
 {
@@ -14,26 +15,36 @@ namespace ServicoXml
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            Log.Information("Serviço xml começou a funcionar");
+            Log.Information("Serviço Xml foi iniciado por " + System.Security.Principal.WindowsIdentity.GetCurrent().Name);
+
+            SelectQuery sQuery = new SelectQuery(string.Format("select name, startname from Win32_Service"));
+            using (ManagementObjectSearcher mgmtSearcher = new ManagementObjectSearcher(sQuery))
+            {
+                foreach (ManagementObject service in mgmtSearcher.Get())
+                {
+                    if (service["Name"].ToString() == "XmlService")
+                        Log.Information("O serviço conectou-se utilizando " + service["startname"].ToString());
+                }
+            }
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                Log.Debug("getXml (início) ...");
+                Log.Debug("Verificando email (início) ...");
 
                 getXml.ValidateFolder();
 
                 getXml.GetAttatchments();
 
-                Log.Debug("getXml (fim) ...");
-                Log.Debug("Import (início) ...");
+                Log.Debug("Verificando email (fim) ...");
+                Log.Debug("Importando dados (início) ...");
 
                 import.Import();
 
-                Log.Debug("Import (fim) ...");    
+                Log.Debug("Importando dados (fim) ...");
             }
 
             if (stoppingToken.IsCancellationRequested)
-                Log.Warning("O serviço xml foi parado manualmente");
+                Log.Warning("O serviço xml foi finalizado manualmente por " + System.Security.Principal.WindowsIdentity.GetCurrent().Name);
         }
     }
 }
