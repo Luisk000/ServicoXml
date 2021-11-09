@@ -66,7 +66,6 @@ namespace VerificadorXml
                 CadastroDbContext context = new CadastroDbContext();
                 foreach (Cadastro cadastro in context.Cadastros)
                 {
-                    Serilog.Log.Debug("Procurando por arquivos xml recebidos em " + cadastro.Email);
                     if (cadastro.Ativo == true)
                         using (Imap imap = new Imap())
                         {
@@ -75,6 +74,9 @@ namespace VerificadorXml
                             imap.SelectInbox();
 
                             List<long> uids = imap.Search(Flag.Undeleted);
+
+                            if (uids.Count == 0)
+                                Serilog.Log.Debug("Nenhum novo arquivo xml recebido no email " + cadastro.Email);
 
                             foreach (long uid in uids)
                             {

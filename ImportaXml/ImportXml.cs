@@ -27,7 +27,7 @@ namespace ImportaXml
         {
             if (!Directory.Exists(folderAprovado))
             {
-                Log.Warning("A pasta de armazenamento de Xml não foi encontrada!");
+                Log.Error("A pasta de armazenamento de Xml não foi encontrada!");
                 return;
             }
 
@@ -97,7 +97,7 @@ namespace ImportaXml
             }
             else
             {
-                Log.Debug("Nenhum novo arquivo xml recebido");
+                Log.Debug("Nenhum novo arquivo xml recebido no diretório local");
             }
         }
 
