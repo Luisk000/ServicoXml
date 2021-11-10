@@ -17,9 +17,9 @@ namespace ServicoXml
             log.Config();
 
             try
-            {              
+            {
                 CreateHostBuilder(args).Build().Run();
-            }           
+            }
             catch (Exception ex)
             {
                 Log.Fatal(ex, "ALGO DEU ERRADO COM O SERVIÇO XML: " + ex.ToString());

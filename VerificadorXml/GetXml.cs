@@ -1,4 +1,5 @@
-﻿using Limilabs.Client.IMAP;
+﻿using Limilabs.Client;
+using Limilabs.Client.IMAP;
 using Limilabs.Mail;
 using Limilabs.Mail.MIME;
 using Microsoft.Data.SqlClient;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.ServiceProcess;
@@ -34,22 +36,32 @@ namespace VerificadorXml
             {
                 if (!Directory.Exists(folderPendente))
                 {
-                    Serilog.Log.Warning("Diretório não encontrado, criando nova pasta na Área de Trabalho");
+                    Serilog.Log.Debug("Diretório 'Pendente' não encontrado, criando nova pasta na Área de Trabalho");
                     Directory.CreateDirectory(folderPendente);
                 }
-                    
+
                 if (!Directory.Exists(folderAprovado))
+                {
+                    Serilog.Log.Debug("Diretório 'Aprovado' não encontrado, criando nova pasta na Área de Trabalho");
                     Directory.CreateDirectory(folderAprovado);
+                }
 
                 if (!Directory.Exists(folderSemCertificado))
+                {
+                    Serilog.Log.Debug("Diretório 'Sem Certificado' não encontrado, criando nova pasta na Área de Trabalho");
                     Directory.CreateDirectory(folderSemCertificado);
+                }
+
 
                 if (!Directory.Exists(folderCertificadoInvalido))
+                {
+                    Serilog.Log.Debug("Diretório 'Certificado Inválido' não encontrado, criando nova pasta na Área de Trabalho");
                     Directory.CreateDirectory(folderCertificadoInvalido);
+                }
             }
             catch (UnauthorizedAccessException ex)
             {
-                Serilog.Log.Fatal(ex, "Permissão para modificar diretrios negada: " + ex.ToString());
+                Serilog.Log.Fatal(ex, "Permissão para modificar diretorios negada: " + ex.ToString());
                 ServiceController sc = new ServiceController();
                 sc.Stop();
             }
@@ -65,32 +77,46 @@ namespace VerificadorXml
         public void GetAttatchments()
         {
             try
-            {               
-                CadastroDbContext context = new CadastroDbContext();                
+            {
+                CadastroDbContext context = new CadastroDbContext();
                 foreach (Cadastro cadastro in context.Cadastros)
                 {
-                    Serilog.Log.Debug("Procurando por anexos em " + cadastro.Email);
                     if (cadastro.Ativo == true)
                         using (Imap imap = new Imap())
                         {
-                            imap.Connect(cadastro.ServerImap);
-                            imap.UseBestLogin(cadastro.Email, cadastro.Senha);
-                            imap.SelectInbox();
-
-                            List<long> uids = imap.Search(Flag.Undeleted);
-
-                            foreach (long uid in uids)
+                            try
                             {
-                                var eml = imap.GetMessageByUID(uid);
-                                IMail mail = new MailBuilder().CreateFromEml(eml);
+                                imap.Connect(cadastro.ServerImap);
+                                imap.UseBestLogin(cadastro.Email, cadastro.Senha);
+                                imap.SelectInbox();
 
-                                SaveAttachments(mail, folderPendente, cadastro.Email.ToString());
+                                Serilog.Log.Debug("Conectou-se com sucesso a " + cadastro.Email);
+
+                                List<long> uids = imap.Search(Flag.Undeleted);
+
+                                foreach (long uid in uids)
+                                {
+                                    var eml = imap.GetMessageByUID(uid);
+                                    IMail mail = new MailBuilder().CreateFromEml(eml);
+
+                                    Serilog.Log.Debug("Nova mensagem recebida de " + mail.ReturnPath);
+
+                                    SaveAttachments(mail, folderPendente, cadastro.Email.ToString());
+
+                                    //imap.DeleteMessageByUID(uid);
+
+                                    Serilog.Log.Debug("Finalizou análise de mensagem recebida de " + mail.ReturnPath + " em " + cadastro.Email);
+                                }
+                                imap.Close();
                             }
-                            imap.Close();
+                            catch (ServerException ex)
+                            {
+                                Serilog.Log.Error(ex, "Falha ao conectar-se com " + cadastro.Email);
+                            }
                         }
                 }
                 if (!context.Cadastros.Any())
-                    Serilog.Log.Warning("Não há nehum cadastro no banco de dados");
+                    Serilog.Log.Warning("Não há nenhum cadastro no banco de dados");
             }
             catch (SqlException ex)
             {
@@ -107,10 +133,6 @@ namespace VerificadorXml
             {
                 Serilog.Log.Error(ex, "Falha ao conectar com server Imap: " + ex.ToString());
             }
-            catch (Exception ex)
-            {
-                Serilog.Log.Error(ex, "Um erro desconhecido ocorreu: " + ex.ToString());
-            }
         }
 
 
@@ -121,46 +143,47 @@ namespace VerificadorXml
                 var file = Path.Combine(folder, attachment.SafeFileName);
                 Path.Combine(folder, attachment.SafeFileName);
 
-                if (attachment.ContentType.ToString().Equals("text/xml")
-                    && !File.Exists(Path.Combine(folderAprovado, attachment.SafeFileName))
+                if (attachment.ContentType.ToString().Equals("text/xml"))
+                {
+                    if (!File.Exists(Path.Combine(folderAprovado, attachment.SafeFileName))
                     && !File.Exists(Path.Combine(folderCertificadoInvalido, attachment.SafeFileName))
                     && !File.Exists(Path.Combine(folderSemCertificado, attachment.SafeFileName))
                     && !File.Exists(Path.Combine(folderFalha, attachment.SafeFileName))
                     && !File.Exists(Path.Combine(folderConcluido, attachment.SafeFileName)))
-                {                    
-                    attachment.Save(Path.Combine(file));
-                    VerifyXML(Path.Combine(file), email, cadastro);
+                    {
+                        Serilog.Log.Debug("Arquivo xml " + attachment.SafeFileName + " encontrado em mensagem recebida por " + email.ReturnPath);
+                        attachment.Save(Path.Combine(file));
+                        VerifyXML(Path.Combine(file), email, cadastro);
+                    }
+                    else
+                        Serilog.Log.Debug("Há um anexo xml repetido em " + email.ReturnPath + ": " + attachment.SafeFileName);
                 }
+                else
+                    Serilog.Log.Debug("Há um anexo na mensagem recebida por " + email.ReturnPath + " que não é um arquivo xml: " + attachment.SafeFileName);             
             }
 
             if (!email.Attachments.Any())
-                Serilog.Log.Warning("Nenhum anexo foi encontrado em um email enviado por " + email.ReturnPath);
+                Serilog.Log.Debug("Nenhum anexo foi encontrado em um email enviado por " + email.ReturnPath);
         }
 
 
         private void VerifyXML(string xmlName, IMail email, string cadastro)
         {
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.PreserveWhitespace = true;
-            xmlDoc.Load(xmlName);
-
-            SignedXml signedXml = new SignedXml(xmlDoc);
-            XmlNodeList nodeList = xmlDoc.GetElementsByTagName("Signature");
-            XmlNodeList certificates509 = xmlDoc.GetElementsByTagName("X509Certificate");
-
             string sourceFile = Path.Combine(folderPendente, xmlName);
-
-            if (!sourceFile.Any())
-                Serilog.Log.Information("Nenhum novo arquivo xml recebido de " + email.ReturnPath);
-
-            if (certificates509.Count == 0)
-            {
-                Move(sourceFile, xmlName, folderSemCertificado, email, cadastro);
-                return;
-            }
-
             try
             {
+                XmlDocument xmlDoc = new XmlDocument();
+                Serilog.Log.Debug(xmlName.Split('\\')[6] + " carregado, iniciando verificação...");
+                xmlDoc.PreserveWhitespace = true;
+                xmlDoc.Load(xmlName);
+
+                SignedXml signedXml = new SignedXml(xmlDoc);
+                XmlNodeList nodeList = xmlDoc.GetElementsByTagName("Signature");
+                XmlNodeList certificates509 = xmlDoc.GetElementsByTagName("X509Certificate");
+
+                if (certificates509.Count == 0)
+                    throw new XmlException();
+
                 X509Certificate2 dcert2 = new X509Certificate2(Convert.FromBase64String(certificates509[0].InnerText));
                 foreach (XmlElement element in nodeList)
                 {
@@ -169,14 +192,30 @@ namespace VerificadorXml
                     bool passes = signedXml.CheckSignature(dcert2, true);
 
                     if (passes)
+                    {
+                        Serilog.Log.Debug(xmlName.Split('\\')[6] + " não possui um certificado válido");
                         Move(sourceFile, xmlName, folderAprovado, email, cadastro);
-
+                    }
                     else
+                    {
+                        Serilog.Log.Debug(xmlName.Split('\\')[6] + " não possui um certificado válido");
                         Move(sourceFile, xmlName, folderCertificadoInvalido, email, cadastro);
+                    }
                 }
             }
-            catch
+            catch (XmlException)
             {
+                Serilog.Log.Debug(xmlName.Split('\\')[6] + " não possui um certificado");
+                Move(sourceFile, xmlName, folderSemCertificado, email, cadastro);
+            }
+            catch (CryptographicException)
+            {
+                Serilog.Log.Debug(xmlName.Split('\\')[6] + " não possui um certificado válido");
+                Move(sourceFile, xmlName, folderCertificadoInvalido, email, cadastro);
+            }
+            catch (FormatException)
+            {
+                Serilog.Log.Debug(xmlName.Split('\\')[6] + " não possui um certificado válido");
                 Move(sourceFile, xmlName, folderCertificadoInvalido, email, cadastro);
             }
             finally
@@ -196,28 +235,25 @@ namespace VerificadorXml
 
             if (folder == folderAprovado)
             {
-                Serilog.Log.Information("Arquivo XML autêntico recebido");
+                Serilog.Log.Information("(Resumo) Arquivo XML autêntico salvo: " + xmlName.Split('\\')[6]);
                 Serilog.Log.Information("Enviado por: " + email.ReturnPath);
                 Serilog.Log.Information("Recebido em: " + cadastro);
-                Serilog.Log.Information("Nome do Arquivo: " + xmlName.Split('\\')[6]);
             }
-                
+
             if (folder == folderCertificadoInvalido)
             {
-                Serilog.Log.Warning("Arquivo XML com certificado inválido recebido");
+                Serilog.Log.Warning("(Resumo) Arquivo XML com certificado inválido salvo: " + xmlName.Split('\\')[6]);
                 Serilog.Log.Warning("Enviado por: " + email.ReturnPath);
                 Serilog.Log.Warning("Recebido em: " + cadastro);
-                Serilog.Log.Warning("Nome do Arquivo: " + xmlName.Split('\\')[6]);
-            }             
+            }
 
             if (folder == folderSemCertificado)
             {
-                Serilog.Log.Warning("Arquivo XML sem certificado recebido");
+                Serilog.Log.Warning("(Resumo) Arquivo XML sem certificado salvo: " + xmlName.Split('\\')[6]);
                 Serilog.Log.Warning("Enviado por: " + email.ReturnPath);
                 Serilog.Log.Warning("Recebido em: " + cadastro);
-                Serilog.Log.Warning("Nome do Arquivo: " + xmlName.Split('\\')[6]);
             }
-                
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
