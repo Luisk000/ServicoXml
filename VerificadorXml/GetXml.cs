@@ -156,14 +156,14 @@ namespace VerificadorXml
                         VerifyXML(Path.Combine(file), email, cadastro);
                     }
                     else
-                        Serilog.Log.Debug("Há um anexo xml repetido em " + email.ReturnPath + ": " + attachment.SafeFileName);
+                        Serilog.Log.Debug("Há um anexo xml repetido: " + attachment.SafeFileName);
                 }
                 else
-                    Serilog.Log.Debug("Há um anexo na mensagem recebida por " + email.ReturnPath + " que não é um arquivo xml: " + attachment.SafeFileName);             
+                    Serilog.Log.Debug("Há um anexo que não é um arquivo xml: " + attachment.SafeFileName);             
             }
 
             if (!email.Attachments.Any())
-                Serilog.Log.Debug("Nenhum anexo foi encontrado em um email enviado por " + email.ReturnPath);
+                Serilog.Log.Debug("Nenhum anexo foi encontrado na mensagem");
         }
 
 
