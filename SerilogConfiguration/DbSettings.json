@@ -1,0 +1,7 @@
+﻿{
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "LogLevelConnection": "Data Source=WST-SOFT01;Initial Catalog=LogLevelDB;Trusted_Connection=true;"
+  },
+  "LogFolder": "C:\\Users\\softadm1\\Desktop\\LogFolder"
+}

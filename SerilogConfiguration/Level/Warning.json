@@ -1,8 +1,6 @@
 ﻿{
-  "AllowedHosts": "*",
-  "LogFolder": "C:\\Users\\softadm1\\Desktop\\LogFolder",
   "Serilog": {
-    "MinimumLevel": "Debug",
+    "MinimumLevel": "Warning",
     "WriteTo": [
       {
         "Name": "MSSqlServer",

@@ -14,6 +14,7 @@ namespace ServicoXml
         private static SerilogConfig log = new SerilogConfig();
         public static void Main(string[] args)
         {
+            log.folderConfig();
             log.Config();
 
             try

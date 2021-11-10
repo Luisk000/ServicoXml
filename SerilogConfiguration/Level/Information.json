@@ -1,0 +1,20 @@
+﻿{
+  "Serilog": {
+    "MinimumLevel": "Debug",
+    "WriteTo": [
+      {
+        "Name": "MSSqlServer",
+        "Args": {
+          "connectionString": "Data Source=WST-SOFT01; Initial Catalog=LogDB;Trusted_Connection=true;",
+          "sinkOptionsSection": {
+            "tableName": "LogEvents",
+            "schemaName": "dbo",
+            "autoCreateSqlTable": true,
+            "batchPostingLimit": 1000,
+            "period": "0.00:00:30"
+          }
+        }
+      }
+    ]
+  }
+}
