@@ -14,8 +14,19 @@ namespace SerilogConfiguration
         private static string LogFolder = configuration.GetSection("LogFolder").Value;
         public void Config()
         {
-            if (!Directory.Exists(LogFolder))
-                Directory.CreateDirectory(LogFolder);
+            try
+            {
+                if (!Directory.Exists(LogFolder))
+                    Directory.CreateDirectory(LogFolder);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                Log.Error(ex, "Permissão para modificar diretorio de Logs negada: " + ex.ToString());
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Um erro desconhecido ocorreu ao criar o diretório para Logs: " + ex.ToString());
+            }
 
             try
             {
