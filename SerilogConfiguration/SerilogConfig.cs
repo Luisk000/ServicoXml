@@ -21,11 +21,15 @@ namespace SerilogConfiguration
             }
             catch (UnauthorizedAccessException ex)
             {
-                Log.Error(ex, "Permissão para modificar diretorio de Logs negada: " + ex.ToString());
+                EventLog eLog = new EventLog("Application");
+                eLog.Source = "Application";
+                eLog.WriteEntry("Acesso ao diretorio de armazenamento de Logs negada : " + ex.ToString(), EventLogEntryType.Error);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Um erro desconhecido ocorreu ao criar o diretório para Logs: " + ex.ToString());
+                EventLog eLog = new EventLog("Application");
+                eLog.Source = "Application";
+                eLog.WriteEntry("Um erro desconhecido ocorreu com o Serilog : " + ex.ToString(), EventLogEntryType.Error);
             }
 
             try
