@@ -32,7 +32,6 @@ namespace ServicoXml
                 Log.Debug("Verificando email (início) ...");
 
                 getXml.ValidateFolder();
-
                 getXml.GetAttatchments();
 
                 Log.Debug("Verificando email (fim) ...");

@@ -99,7 +99,7 @@ namespace VerificadorXml
                                     var eml = imap.GetMessageByUID(uid);
                                     IMail mail = new MailBuilder().CreateFromEml(eml);
 
-                                    Serilog.Log.Debug("Nova mensagem recebida de " + mail.ReturnPath);
+                                    Serilog.Log.Debug("Nova mensagem recebida de " + mail.ReturnPath + " em " + cadastro.Email);
 
                                     SaveAttachments(mail, folderPendente, cadastro.Email.ToString());
 
@@ -133,6 +133,10 @@ namespace VerificadorXml
             {
                 Serilog.Log.Error(ex, "Falha ao conectar com server Imap: " + ex.ToString());
             }
+            catch (Exception ex)
+            {
+                Serilog.Log.Error(ex, "Um erro desconhecido ocorreu com o verificador: " + ex.ToString());
+            }
         }
 
 
@@ -151,7 +155,7 @@ namespace VerificadorXml
                     && !File.Exists(Path.Combine(folderFalha, attachment.SafeFileName))
                     && !File.Exists(Path.Combine(folderConcluido, attachment.SafeFileName)))
                     {
-                        Serilog.Log.Debug("Arquivo xml " + attachment.SafeFileName + " encontrado em mensagem recebida por " + email.ReturnPath);
+                        Serilog.Log.Debug("Arquivo xml " + attachment.SafeFileName + " encontrado");
                         attachment.Save(Path.Combine(file));
                         VerifyXML(Path.Combine(file), email, cadastro);
                     }
