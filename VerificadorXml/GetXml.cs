@@ -193,7 +193,7 @@ namespace VerificadorXml
 
                     if (passes)
                     {
-                        Serilog.Log.Debug(xmlName.Split('\\')[6] + " não possui um certificado válido");
+                        Serilog.Log.Debug(xmlName.Split('\\')[6] + " é válido");
                         Move(sourceFile, xmlName, folderAprovado, email, cadastro);
                     }
                     else
