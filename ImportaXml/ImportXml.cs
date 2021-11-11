@@ -164,7 +164,7 @@ namespace ImportaXml
                                     for (int i = 0; i < ide.Count; i++)
                                     {
                                         if (ide[i].Name == "cUF")
-                                            xml.nfeProc_NFe_infNFe_ide_cUF = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_cUF = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "cNF")
                                             xml.nfeProc_NFe_infNFe_ide_cNF = ide[i].InnerText;
@@ -173,13 +173,13 @@ namespace ImportaXml
                                             xml.nfeProc_NFe_infNFe_ide_natOp = ide[i].InnerText;
 
                                         else if (ide[i].Name == "mod")
-                                            xml.nfeProc_NFe_infNFe_ide_mod = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_mod = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "serie")
-                                            xml.nfeProc_NFe_infNFe_ide_serie = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_serie = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "nNF")
-                                            xml.nfeProc_NFe_infNFe_ide_nNF = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_nNF = double.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "dhEmi")
                                             xml.nfeProc_NFe_infNFe_ide_dhEmi = ide[i].InnerText;
@@ -188,40 +188,40 @@ namespace ImportaXml
                                             xml.nfeProc_NFe_infNFe_ide_dhSaiEnt = ide[i].InnerText;
 
                                         else if (ide[i].Name == "tpNF")
-                                            xml.nfeProc_NFe_infNFe_ide_tpNF = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_tpNF = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "idDest")
-                                            xml.nfeProc_NFe_infNFe_ide_idDest = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_idDest = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "cMunFG")
                                             xml.nfeProc_NFe_infNFe_ide_cMunFG = ide[i].InnerText;
 
                                         else if (ide[i].Name == "tpImp")
-                                            xml.nfeProc_NFe_infNFe_ide_tpImp = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_tpImp = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "tpEmis")
-                                            xml.nfeProc_NFe_infNFe_ide_tpEmis = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_tpEmis = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "cDV")
-                                            xml.nfeProc_NFe_infNFe_ide_cDV = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_cDV = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "tpAmb")
-                                            xml.nfeProc_NFe_infNFe_ide_tpAmb = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_tpAmb = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "finNFe")
-                                            xml.nfeProc_NFe_infNFe_ide_finNFe = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_finNFe = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "indFinal")
-                                            xml.nfeProc_NFe_infNFe_ide_indFinal = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_indFinal = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "indPres")
-                                            xml.nfeProc_NFe_infNFe_ide_indPres = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_indPres = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "indIntermed")
-                                            xml.nfeProc_NFe_infNFe_ide_indIntermed = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_indIntermed = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "procEmi")
-                                            xml.nfeProc_NFe_infNFe_ide_procEmi = ide[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_ide_procEmi = Int32.Parse(ide[i].InnerText);
 
                                         else if (ide[i].Name == "verProc")
                                             xml.nfeProc_NFe_infNFe_ide_verProc = ide[i].InnerText;
@@ -258,7 +258,7 @@ namespace ImportaXml
                                                     xml.nfeProc_NFe_infNFe_emit_enderEmit_xLgr = enderEmit[j].InnerText;
 
                                                 else if (enderEmit[j].Name == "nro")
-                                                    xml.nfeProc_NFe_infNFe_emit_enderEmit_nro = enderEmit[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_emit_enderEmit_nro = Int32.Parse(enderEmit[j].InnerText);
 
                                                 else if (enderEmit[j].Name == "xCpl")
                                                     xml.nfeProc_NFe_infNFe_emit_enderEmit_xCpl = enderEmit[j].InnerText;
@@ -306,7 +306,7 @@ namespace ImportaXml
                                             xml.nfeProc_NFe_infNFe_emit_CNAE = emit[i].InnerText;
 
                                         else if (emit[i].Name == "CRT")
-                                            xml.nfeProc_NFe_infNFe_emit_CRT = emit[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_emit_CRT = Int32.Parse(emit[i].InnerText);
 
                                         else if (emit[i].Name == "indIEDest")
                                             xml.nfeProc_NFe_infNFe_emit_indIEDest = emit[i].InnerText;
@@ -350,7 +350,7 @@ namespace ImportaXml
                                                     xml.nfeProc_NFe_infNFe_dest_enderDest_xCpl = enderDest[j].InnerText;
 
                                                 else if (enderDest[j].Name == "xCpl")
-                                                    xml.nfeProc_NFe_infNFe_dest_enderDest_nro = enderDest[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_dest_enderDest_nro = Int32.Parse(enderDest[j].InnerText);
 
                                                 else if (enderDest[j].Name == "xBairro")
                                                     xml.nfeProc_NFe_infNFe_dest_enderDest_xBairro = enderDest[j].InnerText;
@@ -382,7 +382,7 @@ namespace ImportaXml
                                         }
 
                                         else if (dest[i].Name == "indIEDest")
-                                            xml.nfeProc_NFe_infNFe_dest_indIEDest = dest[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_dest_indIEDest = Int32.Parse(dest[i].InnerText);
 
                                         else if (dest[i].Name == "IE")
                                             xml.nfeProc_NFe_infNFe_dest_IE = dest[i].InnerText;
@@ -418,7 +418,7 @@ namespace ImportaXml
                                             xml.nfeProc_NFe_infNFe_retirada_xLgr = retirada[i].InnerText;
 
                                         else if (retirada[i].Name == "nro")
-                                            xml.nfeProc_NFe_infNFe_retirada_nro = retirada[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_retirada_nro = Int32.Parse(retirada[i].InnerText);
 
                                         else if (retirada[i].Name == "xBairro")
                                             xml.nfeProc_NFe_infNFe_retirada_xBairro = retirada[i].InnerText;
@@ -471,7 +471,7 @@ namespace ImportaXml
                                             xml.nfeProc_NFe_infNFe_entrega_xLgr = entrega[i].InnerText;
 
                                         else if (entrega[i].Name == "nro")
-                                            xml.nfeProc_NFe_infNFe_entrega_nro = entrega[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_entrega_nro = Int32.Parse(entrega[i].InnerText);
 
                                         else if (entrega[i].Name == "xBairro")
                                             xml.nfeProc_NFe_infNFe_entrega_xBairro = entrega[i].InnerText;
@@ -534,7 +534,7 @@ namespace ImportaXml
                                     for (int i = 0; i < detAt.Count; i++)
                                     {
                                         if (detAt[i].Name == "nItem")
-                                            xmlDet.nfeProc_NFe_infNFe_det____nItem = detAt[i].InnerText;
+                                            xmlDet.nfeProc_NFe_infNFe_det____nItem = Int32.Parse(detAt[i].InnerText);
                                     }
 
                                     XmlNodeList det = infNFe[h].ChildNodes;
@@ -548,7 +548,7 @@ namespace ImportaXml
                                             for (int j = 0; j < prod.Count; j++)
                                             {
                                                 if (prod[j].Name == "cProd")
-                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_cProd = prod[j].InnerText;
+                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_cProd = Int32.Parse(prod[j].InnerText);
 
                                                 else if (prod[j].Name == "cEAN")
                                                     xmlDet.nfeProc_NFe_infNFe_det_prod_cEAN = prod[j].InnerText;
@@ -560,19 +560,19 @@ namespace ImportaXml
                                                     xmlDet.nfeProc_NFe_infNFe_det_prod_NCM = prod[j].InnerText;
 
                                                 else if (prod[j].Name == "CFOP")
-                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_CFOP = prod[j].InnerText;
+                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_CFOP = Int32.Parse(prod[j].InnerText);
 
                                                 else if (prod[j].Name == "uCom")
                                                     xmlDet.nfeProc_NFe_infNFe_det_prod_uCom = prod[j].InnerText;
 
                                                 else if (prod[j].Name == "qCom")
-                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_qCom = prod[j].InnerText;
+                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_qCom = double.Parse(prod[j].InnerText);
 
                                                 else if (prod[j].Name == "vUnCom")
-                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_vUnCom = prod[j].InnerText;
+                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_vUnCom = double.Parse(prod[j].InnerText);
 
                                                 else if (prod[j].Name == "vProd")
-                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_vProd = prod[j].InnerText;
+                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_vProd = double.Parse(prod[j].InnerText);
 
                                                 else if (prod[j].Name == "cEANTrib")
                                                     xmlDet.nfeProc_NFe_infNFe_det_prod_cEANTrib = prod[j].InnerText;
@@ -581,13 +581,13 @@ namespace ImportaXml
                                                     xmlDet.nfeProc_NFe_infNFe_det_prod_uTrib = prod[j].InnerText;
 
                                                 else if (prod[j].Name == "qTrib")
-                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_qTrib = prod[j].InnerText;
+                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_qTrib = double.Parse(prod[j].InnerText);
 
                                                 else if (prod[j].Name == "vUnTrib")
-                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_vUnTrib = prod[j].InnerText;
+                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_vUnTrib = double.Parse(prod[j].InnerText);
 
                                                 else if (prod[j].Name == "indTot")
-                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_indTot = prod[j].InnerText;
+                                                    xmlDet.nfeProc_NFe_infNFe_det_prod_indTot = Int32.Parse(prod[j].InnerText);
 
                                                 else
                                                     NaoRegistrado(prod[j].Name, prod[j].InnerText, xml);
@@ -613,28 +613,28 @@ namespace ImportaXml
                                                             for (int l = 0; l < ICMS00.Count; l++)
                                                             {
                                                                 if (ICMS00[l].Name == "orig" && ICMS[k].Name == "ICMS00")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_orig = ICMS00[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_orig = Int32.Parse(ICMS00[l].InnerText);
 
                                                                 else if (ICMS00[l].Name == "CST")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_CST = ICMS00[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_CST = Int32.Parse(ICMS00[l].InnerText);
 
                                                                 else if (ICMS00[l].Name == "modBC")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_modBC = ICMS00[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_modBC = Int32.Parse(ICMS00[l].InnerText);
 
                                                                 else if (ICMS00[l].Name == "vBC")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_vBC = ICMS00[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_vBC = double.Parse(ICMS00[l].InnerText);
 
                                                                 else if (ICMS00[l].Name == "pICMS")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_pICMS = ICMS00[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_pICMS = double.Parse(ICMS00[l].InnerText);
 
                                                                 else if (ICMS00[l].Name == "vICMS")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_vICMS = ICMS00[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_vICMS = double.Parse(ICMS00[l].InnerText);
 
                                                                 else if (ICMS00[l].Name == "orig" && ICMS[k].Name == "ICMSSN102")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMSN102_orig = ICMS00[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMSN102_orig = Int32.Parse(ICMS00[l].InnerText);
 
                                                                 else if (ICMS00[l].Name == "CSOSN")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMSN102_CSOSN = ICMS00[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMSN102_CSOSN = double.Parse(ICMS00[l].InnerText);
 
                                                                 else
                                                                     NaoRegistrado(ICMS00[l].Name, ICMS00[l].InnerText, xml);
@@ -653,7 +653,7 @@ namespace ImportaXml
                                                     for (int k = 0; k < IPI.Count; k++)
                                                     {
                                                         if (IPI[k].Name == "cEnq")
-                                                            xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_cEnq = IPI[k].InnerText;
+                                                            xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_cEnq = double.Parse(IPI[k].InnerText);
 
                                                         else if (IPI[k].Name == "IPITrib" || IPI[k].Name == "IPINT")
                                                         {
@@ -662,19 +662,19 @@ namespace ImportaXml
                                                             for (int l = 0; l < IPITrib.Count; l++)
                                                             {
                                                                 if (IPITrib[l].Name == "CST" && IPI[k].Name == "IPITrib")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_CST = IPITrib[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_CST = Int32.Parse(IPITrib[l].InnerText);
 
                                                                 else if (IPITrib[l].Name == "CST" && IPI[k].Name == "IPINT")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_IPINT_CST = IPITrib[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_IPINT_CST = Int32.Parse(IPITrib[l].InnerText);
 
                                                                 else if (IPITrib[l].Name == "vBC")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_vBC = IPITrib[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_vBC = double.Parse(IPITrib[l].InnerText);
 
                                                                 else if (IPITrib[l].Name == "pIPI")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_pIPI = IPITrib[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_pIPI = double.Parse(IPITrib[l].InnerText);
 
                                                                 else if (IPITrib[l].Name == "vIPI")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_vIPI = IPITrib[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_vIPI = double.Parse(IPITrib[l].InnerText);
 
                                                                 else
                                                                     NaoRegistrado(IPITrib[l].Name, IPITrib[l].InnerText, xml);
@@ -699,16 +699,16 @@ namespace ImportaXml
                                                             for (int l = 0; l < PISAliq.Count; l++)
                                                             {
                                                                 if (PISAliq[l].Name == "CST")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_CST = PISAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_CST = Int32.Parse(PISAliq[l].InnerText);
 
                                                                 else if (PISAliq[l].Name == "vBC")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_vBC = PISAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_vBC = double.Parse(PISAliq[l].InnerText);
 
                                                                 else if (PISAliq[l].Name == "pPIS")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_pPIS = PISAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_pPIS = double.Parse(PISAliq[l].InnerText);
 
                                                                 else if (PISAliq[l].Name == "vPIS")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_vPIS = PISAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_vPIS = double.Parse(PISAliq[l].InnerText);
 
                                                                 else
                                                                     NaoRegistrado(PISAliq[l].Name, PISAliq[l].InnerText, xml);
@@ -721,7 +721,7 @@ namespace ImportaXml
                                                             for (int l = 0; l < PISNT.Count; l++)
                                                             {
                                                                 if (PISNT[l].Name == "CST")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISNT_CST = PISNT[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_PIS_PISNT_CST = Int32.Parse(PISNT[l].InnerText);
 
                                                                 else
                                                                     NaoRegistrado(PISNT[l].Name, PISNT[l].InnerText, xml);
@@ -746,16 +746,16 @@ namespace ImportaXml
                                                             for (int l = 0; l < COFINSAliq.Count; l++)
                                                             {
                                                                 if (COFINSAliq[l].Name == "CST")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_CST = COFINSAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_CST = Int32.Parse(COFINSAliq[l].InnerText);
 
                                                                 else if (COFINSAliq[l].Name == "vBC")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vBC = COFINSAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vBC = double.Parse(COFINSAliq[l].InnerText);
 
                                                                 else if (COFINSAliq[l].Name == "pCOFINS")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_pCOFINS = COFINSAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_pCOFINS = double.Parse(COFINSAliq[l].InnerText);
 
                                                                 else if (COFINSAliq[l].Name == "vCOFINS")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vCOFINS = COFINSAliq[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vCOFINS = double.Parse(COFINSAliq[l].InnerText);
 
                                                                 else
                                                                     NaoRegistrado(COFINSAliq[l].Name, COFINSAliq[l].InnerText, xml);
@@ -768,7 +768,7 @@ namespace ImportaXml
                                                             for (int l = 0; l < COFINSNT.Count; l++)
                                                             {
                                                                 if (COFINSNT[l].Name == "CST")
-                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSNT_CST = COFINSNT[l].InnerText;
+                                                                    xmlDet.nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSNT_CST = Int32.Parse(COFINSNT[l].InnerText);
 
                                                                 else
                                                                     NaoRegistrado(COFINSNT[l].Name, COFINSNT[l].InnerText, xml);
@@ -806,73 +806,73 @@ namespace ImportaXml
                                             for (int j = 0; j < ICMSTot.Count; j++)
                                             {
                                                 if (ICMSTot[j].Name == "vBC")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vBC = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vBC = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vICMS")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vICMS = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vICMS = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vICMSDeson")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vICMSDeson = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vICMSDeson = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vFCPUFDest")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vFCPUFDest = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vFCPUFDest = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vICMSUFDest")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vICMSUFDest = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vICMSUFDest = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vICMSUFRemet")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vICMSUFRemet = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vICMSUFRemet = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vFCP")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vFCP = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vFCP = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vBCST")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vBCST = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vBCST = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vST")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vST = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vST = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vFCPST")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vFCPST = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vFCPST = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vFCPSTRet")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vFCPSTRet = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vFCPSTRet = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vProd")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vProd = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vProd = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vFrete")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vFrete = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vFrete = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vSeg")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vSeg = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vSeg = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vDesc")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vDesc = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vDesc = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vII")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vII = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vII = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vIPI")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vIPI = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vIPI = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vIPIDevol")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vIPIDevol = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vIPIDevol = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vPIS")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vPIS = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vPIS = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vCOFINS")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vCOFINS = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vCOFINS = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vOutro")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vOutro = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vOutro = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vNF")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vNF = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vNF = double.Parse(ICMSTot[j].InnerText);
 
                                                 else if (ICMSTot[j].Name == "vTotTrib")
-                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vTotTrib = ICMSTot[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_ICMSTot_vTotTrib = double.Parse(ICMSTot[j].InnerText);
 
                                                 else
                                                     NaoRegistrado(ICMSTot[j].Name, ICMSTot[j].InnerText, xml);
@@ -888,7 +888,7 @@ namespace ImportaXml
                                     for (int i = 0; i < transp.Count; i++)
                                     {
                                         if (transp[i].Name == "modFrete")
-                                            xml.nfeProc_NFe_infNFe_total_transp_modFrete = transp[i].InnerText;
+                                            xml.nfeProc_NFe_infNFe_total_transp_modFrete = Int32.Parse(transp[i].InnerText);
 
                                         else if (transp[i].Name == "transporta")
                                         {
@@ -946,16 +946,16 @@ namespace ImportaXml
                                                     xml.nfeProc_NFe_infNFe_total_transp_vol_esp = vol[j].InnerText;
 
                                                 else if (vol[j].Name == "qVol")
-                                                    xml.nfeProc_NFe_infNFe_total_transp_vol_qVol = vol[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_transp_vol_qVol = Int32.Parse(vol[j].InnerText);
 
                                                 else if (vol[j].Name == "marca")
                                                     xml.nfeProc_NFe_infNFe_total_transp_vol_marca = vol[j].InnerText;
 
                                                 else if (vol[j].Name == "pesoL")
-                                                    xml.nfeProc_NFe_infNFe_total_transp_vol_pesoL = vol[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_transp_vol_pesoL = double.Parse(vol[j].InnerText);
 
                                                 else if (vol[j].Name == "pesoB")
-                                                    xml.nfeProc_NFe_infNFe_total_transp_vol_pesoB = vol[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_transp_vol_pesoB = double.Parse(vol[j].InnerText);
 
                                                 else
                                                     NaoRegistrado(vol[j].Name, vol[j].InnerText, xml);
@@ -980,16 +980,16 @@ namespace ImportaXml
                                             for (int j = 0; j < fat.Count; j++)
                                             {
                                                 if (fat[j].Name == "nFat")
-                                                    xml.nfeProc_NFe_infNFe_total_cobr_fat_nFat = fat[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_cobr_fat_nFat = double.Parse(fat[j].InnerText);
 
                                                 else if (fat[j].Name == "vOrig")
-                                                    xml.nfeProc_NFe_infNFe_total_cobr_fat_vOrig = fat[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_cobr_fat_vOrig = double.Parse(fat[j].InnerText);
 
                                                 else if (fat[j].Name == "vDesc")
-                                                    xml.nfeProc_NFe_infNFe_total_cobr_fat_vDesc = fat[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_cobr_fat_vDesc = double.Parse(fat[j].InnerText);
 
                                                 else if (fat[j].Name == "vLiq")
-                                                    xml.nfeProc_NFe_infNFe_total_cobr_fat_vLiq = fat[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_cobr_fat_vLiq = double.Parse(fat[j].InnerText);
 
                                                 else
                                                     NaoRegistrado(fat[j].Name, fat[j].InnerText, xml);
@@ -1009,7 +1009,7 @@ namespace ImportaXml
                                                     xml.nfeProc_NFe_infNFe_total_cobr_dup_dVenc = dup[j].InnerText;
 
                                                 else if (dup[j].Name == "vDup")
-                                                    xml.nfeProc_NFe_infNFe_total_cobr_dup_vDup = dup[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_cobr_dup_vDup = double.Parse(dup[j].InnerText);
 
                                                 else
                                                     NaoRegistrado(dup[j].Name, dup[j].InnerText, xml);
@@ -1034,13 +1034,13 @@ namespace ImportaXml
                                             for (int j = 0; j < detPag.Count; j++)
                                             {
                                                 if (detPag[j].Name == "indPag")
-                                                    xml.nfeProc_NFe_infNFe_total_pag_detPag_indPag = detPag[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_pag_detPag_indPag = Int32.Parse(detPag[j].InnerText);
 
                                                 else if (detPag[j].Name == "tPag")
-                                                    xml.nfeProc_NFe_infNFe_total_pag_detPag_tPag = detPag[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_pag_detPag_tPag = Int32.Parse(detPag[j].InnerText);
 
                                                 else if (detPag[j].Name == "vPag")
-                                                    xml.nfeProc_NFe_infNFe_total_pag_detPag_vPag = detPag[j].InnerText;
+                                                    xml.nfeProc_NFe_infNFe_total_pag_detPag_vPag = double.Parse(detPag[j].InnerText);
 
                                                 else
                                                     NaoRegistrado(detPag[j].Name, detPag[j].InnerText, xml);
@@ -1305,7 +1305,7 @@ namespace ImportaXml
                             for (int h = 0; h < infProt.Count; h++)
                             {
                                 if (infProt[h].Name == "tpAmb")
-                                    xml.nfeProc_protNFe_infProt_tpAmb = infProt[h].InnerText;
+                                    xml.nfeProc_protNFe_infProt_tpAmb = Int32.Parse(infProt[h].InnerText);
 
                                 else if (infProt[h].Name == "verAplic")
                                     xml.nfeProc_protNFe_infProt_verAplic = infProt[h].InnerText;
@@ -1323,7 +1323,7 @@ namespace ImportaXml
                                     xml.nfeProc_protNFe_infProt_digVal = infProt[h].InnerText;
 
                                 else if (infProt[h].Name == "cStat")
-                                    xml.nfeProc_protNFe_infProt_cStat = infProt[h].InnerText;
+                                    xml.nfeProc_protNFe_infProt_cStat = Int32.Parse(infProt[h].InnerText);
 
                                 else if (infProt[h].Name == "xMotivo")
                                     xml.nfeProc_protNFe_infProt_xMotivo = infProt[h].InnerText;

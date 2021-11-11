@@ -98,8 +98,8 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_dest_enderDest_fone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_dest_enderDest_nro")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_dest_enderDest_nro")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_NFe_infNFe_dest_enderDest_xBairro")
                         .HasColumnType("nvarchar(max)");
@@ -119,8 +119,8 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_dest_idEstrangeiro")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_dest_indIEDest")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_dest_indIEDest")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_NFe_infNFe_dest_xNome")
                         .HasColumnType("nvarchar(max)");
@@ -134,8 +134,8 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_emit_CPF")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_emit_CRT")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_emit_CRT")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_NFe_infNFe_emit_IE")
                         .HasColumnType("nvarchar(max)");
@@ -164,8 +164,8 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_emit_enderEmit_fone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_emit_enderEmit_nro")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_emit_enderEmit_nro")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_NFe_infNFe_emit_enderEmit_xBairro")
                         .HasColumnType("nvarchar(max)");
@@ -215,8 +215,8 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_entrega_fone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_entrega_nro")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_entrega_nro")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_NFe_infNFe_entrega_xBairro")
                         .HasColumnType("nvarchar(max)");
@@ -233,8 +233,8 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_entrega_xPais")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_cDV")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_cDV")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_NFe_infNFe_ide_cMunFG")
                         .HasColumnType("nvarchar(max)");
@@ -242,8 +242,8 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_ide_cNF")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_cUF")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_cUF")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_NFe_infNFe_ide_dhEmi")
                         .HasColumnType("nvarchar(max)");
@@ -251,47 +251,47 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_ide_dhSaiEnt")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_finNFe")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_finNFe")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_idDest")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_idDest")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_indFinal")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_indFinal")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_indIntermed")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_indIntermed")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_indPres")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_indPres")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_mod")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_mod")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_nNF")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_ide_nNF")
+                        .HasColumnType("float");
 
                     b.Property<string>("nfeProc_NFe_infNFe_ide_natOp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_procEmi")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_procEmi")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_serie")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_serie")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_tpAmb")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_tpAmb")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_tpEmis")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_tpEmis")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_tpImp")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_tpImp")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_ide_tpNF")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_ide_tpNF")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_NFe_infNFe_ide_verProc")
                         .HasColumnType("nvarchar(max)");
@@ -335,8 +335,8 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_retirada_fone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_retirada_nro")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_retirada_nro")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_NFe_infNFe_retirada_xBairro")
                         .HasColumnType("nvarchar(max)");
@@ -353,74 +353,74 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_retirada_xPais")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vBC")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vBC")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vBCST")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vBCST")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vCOFINS")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vCOFINS")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vDesc")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vDesc")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vFCP")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vFCP")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vFCPST")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vFCPST")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vFCPSTRet")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vFCPSTRet")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vFCPUFDest")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vFCPUFDest")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vFrete")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vFrete")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vICMS")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vICMS")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vICMSDeson")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vICMSDeson")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vICMSUFDest")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vICMSUFDest")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vICMSUFRemet")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vICMSUFRemet")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vII")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vII")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vIPI")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vIPI")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vIPIDevol")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vIPIDevol")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vNF")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vNF")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vOutro")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vOutro")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vPIS")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vPIS")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vProd")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vProd")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vST")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vST")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vSeg")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vSeg")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_ICMSTot_vTotTrib")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_ICMSTot_vTotTrib")
+                        .HasColumnType("float");
 
                     b.Property<string>("nfeProc_NFe_infNFe_total_cobr_dup_dVenc")
                         .HasColumnType("nvarchar(max)");
@@ -428,32 +428,32 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_total_cobr_dup_nDup")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_cobr_dup_vDup")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_cobr_dup_vDup")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_cobr_fat_nFat")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_cobr_fat_nFat")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_cobr_fat_vDesc")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_cobr_fat_vDesc")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_cobr_fat_vLiq")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_cobr_fat_vLiq")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_cobr_fat_vOrig")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_cobr_fat_vOrig")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_pag_detPag_indPag")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_total_pag_detPag_indPag")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_pag_detPag_tPag")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_total_pag_detPag_tPag")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_pag_detPag_vPag")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_pag_detPag_vPag")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_transp_modFrete")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_total_transp_modFrete")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_NFe_infNFe_total_transp_transporta_CNPJ")
                         .HasColumnType("nvarchar(max)");
@@ -485,14 +485,14 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_total_transp_vol_marca")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_transp_vol_pesoB")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_transp_vol_pesoB")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_transp_vol_pesoL")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_total_transp_vol_pesoL")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_total_transp_vol_qVol")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_total_transp_vol_qVol")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_Nfe____xmlns")
                         .HasColumnType("nvarchar(max)");
@@ -518,8 +518,8 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_protNFe_infProt____xmlns")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_protNFe_infProt_cStat")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_protNFe_infProt_cStat")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_protNFe_infProt_chNFe")
                         .HasColumnType("nvarchar(max)");
@@ -533,8 +533,8 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_protNFe_infProt_nProt")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_protNFe_infProt_tpAmb")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_protNFe_infProt_tpAmb")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_protNFe_infProt_verAplic")
                         .HasColumnType("nvarchar(max)");
@@ -577,83 +577,83 @@ namespace ImportaXml.Migrations
                     b.Property<string>("XmlFileId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_CST")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_CST")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_pCOFINS")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_pCOFINS")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vBC")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vBC")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vCOFINS")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vCOFINS")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSNT_CST")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSNT_CST")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_CST")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_CST")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_modBC")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_modBC")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_orig")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_orig")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_pICMS")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_pICMS")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_vBC")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_vBC")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_vICMS")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMS00_vICMS")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMSN102_CSOSN")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMSN102_CSOSN")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMSN102_orig")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_Imposto_ICMS_ICMSN102_orig")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_IPI_IPINT_CST")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_Imposto_IPI_IPINT_CST")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_CST")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_CST")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_pIPI")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_pIPI")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_vBC")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_vBC")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_vIPI")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_IPI_IPINTrib_vIPI")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_IPI_cEnq")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_IPI_cEnq")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_CST")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_CST")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_pPIS")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_pPIS")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_vBC")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_vBC")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_vPIS")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_Imposto_PIS_PISAliq_vPIS")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_Imposto_PIS_PISNT_CST")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_Imposto_PIS_PISNT_CST")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det____nItem")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det____nItem")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_prod_CFOP")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_prod_CFOP")
+                        .HasColumnType("int");
 
                     b.Property<string>("nfeProc_NFe_infNFe_det_prod_NCM")
                         .HasColumnType("nvarchar(max)");
@@ -664,17 +664,17 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_det_prod_cEANTrib")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_prod_cProd")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_prod_cProd")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_prod_indTot")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("nfeProc_NFe_infNFe_det_prod_indTot")
+                        .HasColumnType("int");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_prod_qCom")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_prod_qCom")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_prod_qTrib")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_prod_qTrib")
+                        .HasColumnType("float");
 
                     b.Property<string>("nfeProc_NFe_infNFe_det_prod_uCom")
                         .HasColumnType("nvarchar(max)");
@@ -682,14 +682,14 @@ namespace ImportaXml.Migrations
                     b.Property<string>("nfeProc_NFe_infNFe_det_prod_uTrib")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_prod_vProd")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_prod_vProd")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_prod_vUnCom")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_prod_vUnCom")
+                        .HasColumnType("float");
 
-                    b.Property<string>("nfeProc_NFe_infNFe_det_prod_vUnTrib")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("nfeProc_NFe_infNFe_det_prod_vUnTrib")
+                        .HasColumnType("float");
 
                     b.Property<string>("nfeProc_NFe_infNFe_det_prod_xProd")
                         .HasColumnType("nvarchar(max)");
