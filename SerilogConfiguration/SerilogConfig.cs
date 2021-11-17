@@ -13,29 +13,10 @@ namespace SerilogConfiguration
         private static IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("DbSettings.json", optional: false, reloadOnChange: true).Build();
         private static string LogFolder = configuration.GetSection("LogFolder").Value;
 
-        public void folderConfig()
-        {
-            try
-            {
-                if (!Directory.Exists(LogFolder))
-                    Directory.CreateDirectory(LogFolder);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                EventLog eLog = new EventLog("Application");
-                eLog.Source = "Application";
-                eLog.WriteEntry("Acesso ao diretorio de armazenamento de Logs negada : " + ex.ToString(), EventLogEntryType.Error);
-            }
-            catch (Exception ex)
-            {
-                EventLog eLog = new EventLog("Application");
-                eLog.Source = "Application";
-                eLog.WriteEntry("Um erro desconhecido ocorreu com o Serilog : " + ex.ToString(), EventLogEntryType.Error);
-            }
-        }
-
         public void Config()
         {
+            folderConfig();
+
             try
             {
                 LogLevelDbContext context = new LogLevelDbContext();
@@ -82,6 +63,27 @@ namespace SerilogConfiguration
                     eLog.Source = "Application";
                     eLog.WriteEntry("SERILOG NÂO ESTÁ FUNCIONANDO : " + x.ToString(), EventLogEntryType.Error);
                 }
+            }
+        }
+
+        private void folderConfig()
+        {
+            try
+            {
+                if (!Directory.Exists(LogFolder))
+                    Directory.CreateDirectory(LogFolder);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                EventLog eLog = new EventLog("Application");
+                eLog.Source = "Application";
+                eLog.WriteEntry("Acesso ao diretorio de armazenamento de Logs negada : " + ex.ToString(), EventLogEntryType.Error);
+            }
+            catch (Exception ex)
+            {
+                EventLog eLog = new EventLog("Application");
+                eLog.Source = "Application";
+                eLog.WriteEntry("Um erro desconhecido ocorreu com o Serilog : " + ex.ToString(), EventLogEntryType.Error);
             }
         }
     }

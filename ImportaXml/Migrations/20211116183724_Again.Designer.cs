@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ImportaXml.Migrations
 {
     [DbContext(typeof(XmlDbContext))]
-    [Migration("20211111165551_NM")]
-    partial class NM
+    [Migration("20211116183724_Again")]
+    partial class Again
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,10 +20,43 @@ namespace ImportaXml.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ImportaXml.Models.Interno", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("CodEmpresaLocal")
+                        .HasColumnType("float");
+
+                    b.Property<double>("CodFornecedorLocal")
+                        .HasColumnType("float");
+
+                    b.Property<double>("CodProdLocal")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Empresa")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fornecedor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Produto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Internos");
+                });
+
             modelBuilder.Entity("ImportaXml.Models.XmlFile", b =>
                 {
                     b.Property<string>("nfeProc_NFe_infNFe_____Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Transferido")
+                        .HasColumnType("bit");
 
                     b.Property<string>("XmlName")
                         .HasColumnType("nvarchar(max)");

@@ -14,7 +14,6 @@ namespace ServicoXml
         private static SerilogConfig log = new SerilogConfig();
         public static void Main(string[] args)
         {
-            log.folderConfig();
             log.Config();
 
             try
@@ -28,6 +27,7 @@ namespace ServicoXml
                 eLog.Source = "Application";
                 eLog.WriteEntry("OCORREU UMA FALHA : " + ex.ToString(), EventLogEntryType.Error);
                 ServiceController sc = new ServiceController();
+                sc.ServiceName = "XmlService";
                 sc.Stop();
             }
         }

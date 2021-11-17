@@ -1,9 +1,11 @@
 ﻿using ImportaXml.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.ServiceProcess;
@@ -41,29 +43,30 @@ namespace ImportaXml
                     xml.XmlName = arq.Split('\\')[6];
 
                     try
-                    {                                            
+                    {
                         ReadXml(arq, xml);
 
                         Log.Information("Leitura de " + xml.XmlName + " concluída com sucesso");
-
+                      
                         context.Files.Add(xml);
                         context.SaveChanges();
 
                         Log.Information(xml.XmlName + " adicionado ao banco de dados");
                         Move(arq, folderConcluido);
+
+                        Converte();
                     }
                     catch (SqlException ex)
                     {
                         Log.Fatal(ex, "Falha ao conectar com o servidor SQL: " + ex.ToString());
                         Move(arq, folderFalha);
-                        ServiceController sc = new ServiceController();
-                        sc.Stop();
+                        throw new Exception();
                     }
                     catch (DbUpdateException)
                     {
                         try
                         {
-                            var nomeRepetido = context.Files.Where(b => b.XmlName == xml.XmlName).Single();      
+                            var nomeRepetido = context.Files.Where(b => b.XmlName == xml.XmlName).Single();
                             Log.Warning(xml.XmlName + " já estava salvo no banco de dados");
                             Move(arq, folderFalha);
                         }
@@ -72,7 +75,7 @@ namespace ImportaXml
                             var idRepetido = context.Files.Where(b => b.nfeProc_NFe_infNFe_____Id == xml.nfeProc_NFe_infNFe_____Id).Single();
                             Log.Warning("Há uma arquivo com o mesmo Id de " + xml.XmlName + " já salvo no banco de dados: " + idRepetido.XmlName);
                             Move(arq, folderFalha);
-                        }                
+                        }
                     }
                     catch (InvalidOperationException)
                     {
@@ -772,8 +775,8 @@ namespace ImportaXml
 
                                                                 else
                                                                     NaoRegistrado(COFINSNT[l].Name, COFINSNT[l].InnerText, xml);
-                                                            }                                                                                                
-                                                        }     
+                                                            }
+                                                        }
 
                                                         else
                                                             NaoRegistrado(COFINS[k].Name, COFINS[k].InnerText, xml);
@@ -790,6 +793,7 @@ namespace ImportaXml
                                     }
 
                                     xmlDet.XmlFileId = xml.nfeProc_NFe_infNFe_____Id;
+                                    xmlDet.Transferido = false;
                                     context.Dets.Add(xmlDet);
                                 }
 
@@ -1363,6 +1367,103 @@ namespace ImportaXml
             nr.XmlFileId = xml.nfeProc_NFe_infNFe_____Id;
             context.NRs.Add(nr);
             Log.Warning("Uma informação não registrada foi encontrada no arquivo xml: " + xml.XmlName);
+        }
+
+
+        private void Converte()
+        {
+            try
+            {
+                Log.Debug("Começando transferência de dados");
+
+                foreach (XmlFileDet det in context.Dets)
+                {                   
+                    if (det.Transferido == false)
+                    {
+                        Interno item = new Interno();
+                        XmlFile file = context.Files.Where(c => c.nfeProc_NFe_infNFe_____Id == det.XmlFileId).Single();
+
+                        item.Fornecedor = file.nfeProc_NFe_infNFe_emit_xNome;
+                        item.Empresa = file.nfeProc_NFe_infNFe_dest_xNome;
+                        item.Produto = det.nfeProc_NFe_infNFe_det_prod_xProd;
+
+                        if (item.Fornecedor == "VITO LEONARDO FRUGIS LTDA")
+                            item.CodFornecedorLocal = 1;
+
+                        else if (item.Fornecedor == "MAROMBAS INDUSTRIA E COMERCIO DE PAPELAO LTDA.")
+                            item.CodFornecedorLocal = 2;
+
+                        else
+                            Log.Warning("foi encontrado um fornecedor não existente no catálogo, chamado: " + item.Fornecedor.ToString() + " no arquivo XML " + file.XmlName.ToString());
+
+
+                        if (item.Empresa == "SENHOR CAIXA IND E COM DE EMBALAGENS LTDA ME")
+                            item.CodEmpresaLocal = 1;
+
+                        else if (item.Empresa == "SY PRODUTOS ALIMENTICIOS LTDA. ME")
+                            item.CodEmpresaLocal = 2;
+
+                        else
+                            Log.Warning("foi encontrada uma empresa não existente no catálogo, chamada: " + item.Empresa.ToString() + " no arquivo XML " + file.XmlName.ToString());
+
+
+                        if (item.Produto == "PAPELAO PARANA BCO PMJ 110 31,0")
+                        {
+                            item.CodProdLocal = 1;
+                            Log.Information(item.Produto + " recebido de " + item.Fornecedor + " a ser entregue para " + item.Empresa);
+                        }
+
+                        else if (item.Produto == "PAPELAO PARANA BCO PMJ 100 36,0")
+                        {
+                            item.CodProdLocal = 2;
+                            Log.Information(item.Produto + " recebido de " + item.Fornecedor + " a ser entregue para " + item.Empresa);
+                        }
+
+                        else if (item.Produto == "PAPELAO PARANA BCO PMJ 100 42,0")
+                        {
+                            item.CodProdLocal = 3;
+                            Log.Information(item.Produto + " recebido de " + item.Fornecedor + " a ser entregue para " + item.Empresa);
+                        }
+
+                        else if (item.Produto == "PAPELAO PARANA BCO PMJ 100 47,0")
+                        {
+                            item.CodProdLocal = 4;
+                            Log.Information(item.Produto + " recebido de " + item.Fornecedor + " a ser entregue para " + item.Empresa);
+                        }
+
+                        else if (item.Produto == "CH PAP OND REF 500 X 960 (KMB)")
+                        {
+                            item.CodProdLocal = 5;
+                            Log.Information(item.Produto + " recebido de " + item.Fornecedor + " a ser entregue para " + item.Empresa);
+                        }
+
+                        else if (item.Produto == "CH PAP OND REF 420 X 1040 (KMB)")
+                        {
+                            item.CodProdLocal = 6;
+                            Log.Information(item.Produto + " recebido de " + item.Fornecedor + " a ser entregue para " + item.Empresa);
+                        }
+
+                        else
+                            Log.Warning("foi encontrado um produto não existente no catálogo, chamado: " + item.Produto.ToString() + " no arquivo XML " + file.XmlName.ToString());
+
+                        context.Internos.Add(item);
+                        det.Transferido = true;
+                        context.Dets.Update(det);
+                    }
+                }
+
+                //List<Interno> invalid = context.Internos.Where(c => c.CodEmpresaLocal == 0 || c.CodFornecedorLocal == 0 || c.CodProdLocal == 0).ToList();
+                //foreach (Interno item in invalid)
+                //{
+                //    context.Internos.Remove(item);
+                //}             
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Um erro ocorreu dureante a transferência: " + ex.ToString());
+                throw new Exception();
+            }
         }
     }
 }

@@ -62,5 +62,7 @@ namespace ImportaXml.Models
         public double nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vBC { get; set; }
         public double nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_pCOFINS { get; set; }
         public double nfeProc_NFe_infNFe_det_Imposto_COFINS_COFINSAliq_vCOFINS { get; set; }
+
+        public bool Transferido { get; set; }
     }
 }

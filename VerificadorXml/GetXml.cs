@@ -29,53 +29,10 @@ namespace VerificadorXml
         protected string folderFalha = configuration.GetSection("FolderLocations:folderFalha").Value;
         protected string folderConcluido = configuration.GetSection("FolderLocations:folderConcluido").Value;
 
-
-        public void ValidateFolder()
-        {
-            try
-            {
-                if (!Directory.Exists(folderPendente))
-                {
-                    Serilog.Log.Debug("Diretório 'Pendente' não encontrado, criando nova pasta na Área de Trabalho");
-                    Directory.CreateDirectory(folderPendente);
-                }
-
-                if (!Directory.Exists(folderAprovado))
-                {
-                    Serilog.Log.Debug("Diretório 'Aprovado' não encontrado, criando nova pasta na Área de Trabalho");
-                    Directory.CreateDirectory(folderAprovado);
-                }
-
-                if (!Directory.Exists(folderSemCertificado))
-                {
-                    Serilog.Log.Debug("Diretório 'Sem Certificado' não encontrado, criando nova pasta na Área de Trabalho");
-                    Directory.CreateDirectory(folderSemCertificado);
-                }
-
-
-                if (!Directory.Exists(folderCertificadoInvalido))
-                {
-                    Serilog.Log.Debug("Diretório 'Certificado Inválido' não encontrado, criando nova pasta na Área de Trabalho");
-                    Directory.CreateDirectory(folderCertificadoInvalido);
-                }
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                Serilog.Log.Fatal(ex, "Permissão para modificar diretorios negada: " + ex.ToString());
-                ServiceController sc = new ServiceController();
-                sc.Stop();
-            }
-            catch (Exception ex)
-            {
-                Serilog.Log.Fatal(ex, "Um erro desconhecido ocorreu ao criar os diretórios: " + ex.ToString());
-                ServiceController sc = new ServiceController();
-                sc.Stop();
-            }
-        }
-
-
         public void GetAttatchments()
         {
+            ValidateFolder();
+
             try
             {
                 CadastroDbContext context = new CadastroDbContext();
@@ -121,8 +78,7 @@ namespace VerificadorXml
             catch (SqlException ex)
             {
                 Serilog.Log.Fatal(ex, "Falha ao conectar com o servidor SQL: " + ex.ToString());
-                ServiceController sc = new ServiceController();
-                sc.Stop();
+                throw new Exception();
             }
             catch (DirectoryNotFoundException)
             {
@@ -136,6 +92,48 @@ namespace VerificadorXml
             catch (Exception ex)
             {
                 Serilog.Log.Error(ex, "Um erro desconhecido ocorreu com o verificador: " + ex.ToString());
+            }
+        }
+
+
+        private void ValidateFolder()
+        {
+            try
+            {
+                if (!Directory.Exists(folderPendente))
+                {
+                    Serilog.Log.Debug("Diretório 'Pendente' não encontrado, criando nova pasta na Área de Trabalho");
+                    Directory.CreateDirectory(folderPendente);
+                }
+
+                if (!Directory.Exists(folderAprovado))
+                {
+                    Serilog.Log.Debug("Diretório 'Aprovado' não encontrado, criando nova pasta na Área de Trabalho");
+                    Directory.CreateDirectory(folderAprovado);
+                }
+
+                if (!Directory.Exists(folderSemCertificado))
+                {
+                    Serilog.Log.Debug("Diretório 'Sem Certificado' não encontrado, criando nova pasta na Área de Trabalho");
+                    Directory.CreateDirectory(folderSemCertificado);
+                }
+
+
+                if (!Directory.Exists(folderCertificadoInvalido))
+                {
+                    Serilog.Log.Debug("Diretório 'Certificado Inválido' não encontrado, criando nova pasta na Área de Trabalho");
+                    Directory.CreateDirectory(folderCertificadoInvalido);
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                Serilog.Log.Fatal(ex, "Permissão para modificar diretorios negada: " + ex.ToString());
+                throw new Exception();
+            }
+            catch (Exception ex)
+            {
+                Serilog.Log.Fatal(ex, "Um erro desconhecido ocorreu ao criar os diretórios: " + ex.ToString());
+                throw new Exception();
             }
         }
 

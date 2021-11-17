@@ -3,14 +3,16 @@ using ImportaXml.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ImportaXml.Migrations
 {
     [DbContext(typeof(XmlDbContext))]
-    partial class XmlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211116192339_FK")]
+    partial class FK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,7 +45,12 @@ namespace ImportaXml.Migrations
                     b.Property<string>("Produto")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("XmlFileId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("XmlFileId");
 
                     b.ToTable("Internos");
                 });
@@ -752,6 +759,15 @@ namespace ImportaXml.Migrations
                     b.HasIndex("XmlFileId");
 
                     b.ToTable("NRs");
+                });
+
+            modelBuilder.Entity("ImportaXml.Models.Interno", b =>
+                {
+                    b.HasOne("ImportaXml.Models.XmlFile", "XmlFile")
+                        .WithMany()
+                        .HasForeignKey("XmlFileId");
+
+                    b.Navigation("XmlFile");
                 });
 
             modelBuilder.Entity("ImportaXml.Models.XmlFileAlgorithm", b =>

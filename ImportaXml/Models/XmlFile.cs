@@ -224,6 +224,6 @@ namespace ImportaXml.Models
         public string nfeProc_protNFe_infProt_nProt { get; set; }
         public string nfeProc_protNFe_infProt_digVal { get; set; }
         public int nfeProc_protNFe_infProt_cStat { get; set; }
-        public string nfeProc_protNFe_infProt_xMotivo { get; set; }
+        public string nfeProc_protNFe_infProt_xMotivo { get; set; } 
     }
 }

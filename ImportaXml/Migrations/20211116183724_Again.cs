@@ -2,7 +2,7 @@
 
 namespace ImportaXml.Migrations
 {
-    public partial class NM : Migration
+    public partial class Again : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -183,11 +183,30 @@ namespace ImportaXml.Migrations
                     nfeProc_protNFe_infProt_nProt = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     nfeProc_protNFe_infProt_digVal = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     nfeProc_protNFe_infProt_cStat = table.Column<int>(type: "int", nullable: false),
-                    nfeProc_protNFe_infProt_xMotivo = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    nfeProc_protNFe_infProt_xMotivo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Transferido = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Files", x => x.nfeProc_NFe_infNFe_____Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Internos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Produto = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CodProdLocal = table.Column<double>(type: "float", nullable: false),
+                    Fornecedor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CodFornecedorLocal = table.Column<double>(type: "float", nullable: false),
+                    Empresa = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CodEmpresaLocal = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Internos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -311,6 +330,9 @@ namespace ImportaXml.Migrations
 
             migrationBuilder.DropTable(
                 name: "Dets");
+
+            migrationBuilder.DropTable(
+                name: "Internos");
 
             migrationBuilder.DropTable(
                 name: "NRs");
